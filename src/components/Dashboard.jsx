@@ -18,22 +18,24 @@ const Dashboard = () => {
       return;
     }
 
-    axios.get('https://learn.reboot01.com/api/graphql-engine/v1/graphql', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      params: {
+    axios.post('https://learn.reboot01.com/api/graphql-engine/v1/graphql',
+      {
         query: `
-          query {
-            me {
+          {
+            user {
               id
-              name
-              email
+              profile
             }
           }
         `
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
       }
-    }).then(response => {
+    ).then(response => {
       setData(response.data);
       console.log('User Data:', response.data);
     }).catch(error => {
