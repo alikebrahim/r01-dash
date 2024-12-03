@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState(null);
+  const [userID, setUserID] = useState(null);
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -36,8 +36,8 @@ const Dashboard = () => {
         }
       }
     ).then(response => {
-      setData(response.data);
-      console.log('User Data:', response.data);
+      setUserID(response.data.data.user[0].id);
+      console.log('User Data:', response.data.data.user[0].id);
     }).catch(error => {
       console.error('Error fetching dashboard data:', error);
       logout();
@@ -48,7 +48,7 @@ const Dashboard = () => {
     <div>
       <h1>Dashboard</h1>
       <button onClick={logout}>Logout</button>
-      {data ? <p>Welcome to your dashboard!</p> : <p>Loading...</p>}
+      {userID ? <p>Welcome to your dashboard {userID}!</p> : <p>Loading...</p>}
     </div>
   );
 };
