@@ -19,7 +19,6 @@ const Login = () => {
       });
 
       if (response.data) {
-        // console.log(response.data)
         localStorage.setItem('token', response.data);
         // NOTE: I suppose here is where I should process the jwt bearer token login,to precede the immediate navigation to the dashboard
         navigate('/dashboard');
