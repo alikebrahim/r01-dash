@@ -6,6 +6,7 @@ import UserDataCard from './DataCard.jsx'
 const Dashboard = () => {
   const navigate = useNavigate();
   const [userID, setUserID] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -25,7 +26,8 @@ const Dashboard = () => {
           {
             user {
               id
-              profile
+              firstName
+              lastName
             }
           }
         `
@@ -38,19 +40,23 @@ const Dashboard = () => {
       }
     ).then(response => {
       setUserID(response.data.data.user[0].id);
+      setUserData(response.data.data.user[0]);
     }).catch(error => {
       console.error('Error fetching dashboard data:', error);
       logout();
     });
   }, [navigate]);
 
+  //NOTE: button in below jsx to be moved to a navbar
   return (
     <div>
-      <h1>Dashboard</h1>
+      {userID ? <p>Welcome to your dashboard, {userData.firstName} {userData.lastName}!</p> : <p>Loading...</p>}
       <button onClick={logout}>Logout</button>
-      {userID ? <p>Welcome to your dashboard {userID}!</p> : <p>Loading...</p>}
       <UserDataCard token={localStorage.getItem('token')} dataCode="dashboard" userID={userID}></UserDataCard>
       <UserDataCard token={localStorage.getItem('token')} dataCode="audit" userID={userID}></UserDataCard>
+      <UserDataCard token={localStorage.getItem('token')} dataCode="xp" userID={userID}></UserDataCard>
+      <UserDataCard token={localStorage.getItem('token')} dataCode="lastProjects" userID={userID}></UserDataCard>
+      <UserDataCard token={localStorage.getItem('token')} dataCode="skills" userID={userID}></UserDataCard>
     </div>
   );
 };

@@ -5,7 +5,12 @@ export const DecodeQuery = (dataCode, userID) => {
       return Queries.userDetails;
     case "audit":
       return Queries.auditData(userID);
-
+    case "xp":
+      return Queries.xpQuery(userID);
+    case "skills":
+      return Queries.skillsQuery;
+    case "lastProjects":
+      return Queries.lastProjectsQuery;
     default:
       console.warn(`No query found for: ${dataCode}`);
       return null; // Return a fallback or error
