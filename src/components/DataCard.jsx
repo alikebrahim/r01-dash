@@ -3,7 +3,7 @@ import axios from 'axios';
 import { DecodeQuery } from '../utils/helpers';
 import { DataBody } from '../utils/dataBody';
 
-const UserDataCard = ({ token, dataCode, userID }) => {
+const UserDataCard = ({ className, token, dataCode, userID }) => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -35,13 +35,13 @@ const UserDataCard = ({ token, dataCode, userID }) => {
   console.log("(" + dataCode + ")", userData)
 
   return (
-    <div>
+    <>
       {userData ? (
-        <DataBody dataCode={dataCode} userData={userData} />
+        <DataBody className={className} dataCode={dataCode} userData={userData} />
       ) : (
         <p>Loading data...</p>
       )}
-    </div>
+    </>
   );
 };
 

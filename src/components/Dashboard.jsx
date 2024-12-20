@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import UserDataCard from './DataCard.jsx'
+import Navbar from './Navbar.jsx'
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -50,11 +51,13 @@ const Dashboard = () => {
   //NOTE: button in below jsx to be moved to a navbar
   return (
     <div>
+      <Navbar />
       {userID ? <p>Welcome to your dashboard, {userData.firstName} {userData.lastName}!</p> : <p>Loading...</p>}
-      <button onClick={logout}>Logout</button>
-      <UserDataCard token={localStorage.getItem('token')} dataCode="dashboard" userID={userID}></UserDataCard>
-      <UserDataCard token={localStorage.getItem('token')} dataCode="audit" userID={userID}></UserDataCard>
-      <UserDataCard token={localStorage.getItem('token')} dataCode="xp" userID={userID}></UserDataCard>
+      <div className="row">
+        <UserDataCard className="card bg-white col-md-4 mb-4" token={localStorage.getItem('token')} dataCode="dashboard" userID={userID}></UserDataCard>
+        <UserDataCard className="card bg-white col-md-4 mb-4" token={localStorage.getItem('token')} dataCode="audit" userID={userID}></UserDataCard>
+        <UserDataCard className="card bg-white col-md-4 mb-4" token={localStorage.getItem('token')} dataCode="xp" userID={userID}></UserDataCard>
+      </div>
       <UserDataCard token={localStorage.getItem('token')} dataCode="lastProjects" userID={userID}></UserDataCard>
       <UserDataCard token={localStorage.getItem('token')} dataCode="skills" userID={userID}></UserDataCard>
     </div>
