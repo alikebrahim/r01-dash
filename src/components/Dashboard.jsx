@@ -48,20 +48,29 @@ const Dashboard = () => {
     });
   }, [navigate]);
 
-  //NOTE: button in below jsx to be moved to a navbar
+  //NOTE: button in below jsx to be moved to a navbar (done)
+  //NOTE: add a datacard for current projet
   return (
     <div>
       <Navbar />
-      {userID ? <p>Welcome to your dashboard, {userData.firstName} {userData.lastName}!</p> : <p>Loading...</p>}
-      <div className="row">
-        <UserDataCard className="card bg-white col-md-4 mb-4" token={localStorage.getItem('token')} dataCode="dashboard" userID={userID}></UserDataCard>
-        <UserDataCard className="card bg-white col-md-4 mb-4" token={localStorage.getItem('token')} dataCode="audit" userID={userID}></UserDataCard>
-        <UserDataCard className="card bg-white col-md-4 mb-4" token={localStorage.getItem('token')} dataCode="xp" userID={userID}></UserDataCard>
+      {userID ? <h2>Welcome to your dashboard, {userData.firstName} {userData.lastName}!</h2> : <p>Loading...</p>}
+      <div>
+        <div className="row">
+          <UserDataCard className="card bg-dark-subtle border-bottom col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="dashboard" userID={userID}></UserDataCard>
+        </div>
+        <div className="row">
+          <UserDataCard className="card bg-dark-subtle border-bottom col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="audit" userID={userID}></UserDataCard>
+          <UserDataCard className="card bg-dark-subtle border-bottom col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="xp" userID={userID}></UserDataCard>
+        </div>
       </div>
-      <UserDataCard token={localStorage.getItem('token')} dataCode="lastProjects" userID={userID}></UserDataCard>
-      <UserDataCard token={localStorage.getItem('token')} dataCode="skills" userID={userID}></UserDataCard>
+      <div className="row">
+        <UserDataCard className="card bg-dark-subtle col-md-12 mb-4" token={localStorage.getItem('token')} dataCode="lastProjects" userID={userID}></UserDataCard>
+      </div>
     </div>
   );
 };
 
 export default Dashboard;
+// <div className="row">
+//   <UserDataCard className="card bg-dark-subtle col-md-12 mb-4" token={localStorage.getItem('token')} dataCode="skills" userID={userID}></UserDataCard>
+// </div>
