@@ -57,20 +57,20 @@ const Dashboard = () => {
       <div>
         <div className="row">
           <UserDataCard className="card bg-dark-subtle border-bottom col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="dashboard" userID={userID}></UserDataCard>
+          <UserDataCard className="card bg-dark-subtle col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="xp" userID={userID}></UserDataCard>
         </div>
         <div className="row">
           <UserDataCard className="card bg-dark-subtle border-bottom col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="audit" userID={userID}></UserDataCard>
-          <UserDataCard className="card bg-dark-subtle border-bottom col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="xp" userID={userID}></UserDataCard>
         </div>
       </div>
       <div className="row">
         <UserDataCard className="card bg-dark-subtle col-md-12 mb-4" token={localStorage.getItem('token')} dataCode="lastProjects" userID={userID}></UserDataCard>
+      </div>
+      <div className="row">
+        <UserDataCard className="card bg-dark-subtle col-md-12 mb-4" token={localStorage.getItem('token')} dataCode="skills" userID={userID}></UserDataCard>
       </div>
     </div>
   );
 };
 
 export default Dashboard;
-// <div className="row">
-//   <UserDataCard className="card bg-dark-subtle col-md-12 mb-4" token={localStorage.getItem('token')} dataCode="skills" userID={userID}></UserDataCard>
-// </div>

@@ -1,4 +1,5 @@
 import SVGProgressBar from "./svg"
+import { FormatXP } from "./helpers"
 
 export const DataBody = (props) => {
   switch (props.dataCode) {
@@ -20,9 +21,7 @@ export const DataBody = (props) => {
         <div className={props.className} >
           <div className="card-body">
             <h5 className="card-title">Audit data</h5>
-            <p className="card-text">Audit Ratio: {props.userData.user[0].auditRatio}</p>
-            <p className="card-text">Up: {props.userData.user[0].totalUp}</p>
-            <p className="card-text">Down: {props.userData.user[0].totalDown}</p>
+            <p className="card-text">Audit Ratio: {Math.ceil(props.userData.user[0].auditRatio)}</p>
             <div>
               {SVGProgressBar(props.userData.user[0].totalUp
                 , props.userData.user[0].totalDown
@@ -32,18 +31,19 @@ export const DataBody = (props) => {
         </div>
       )
     case "xp":
+      let xp = FormatXP(props.userData.transaction_aggregate.aggregate.sum.amount)
       return (
         <div className={props.className} style={{ width: '18rem' }}>
           <div className="card-body">
             <h5 className="card-title">XP</h5>
-            <p className="card-text">{props.userData.transaction_aggregate.aggregate.sum.amount}</p>
+            <p className="card-text">{xp}</p>
           </div>
         </div>
       )
     case "skills":
       return (
-        <div className={props.className} style={{ width: '18rem' }}>
-          <div className="card-body">
+        <div className={props.className} >
+          <div className="card-body ">
             {props.userData.user[0].transactions.map((transaction) => (<h5>Skill: {transaction.type.replace("skill_", "")} Amount: {transaction.amount}</h5>))}
           </div>
         </div>
@@ -54,7 +54,7 @@ export const DataBody = (props) => {
           <p>Last Activity</p>
           <div className="card-body">
             <ul className="list-group"></ul>
-            {props.userData.transaction.map((transaction) => (<li className="list-group-item text-start"> Project - {transaction.object.name}</li>))}
+            {props.userData.transaction.map((transaction) => (<li className="list-group-item text-start"> Project : {transaction.object.name}</li>))}
           </div>
         </div>
       )

@@ -16,3 +16,12 @@ export const DecodeQuery = (dataCode, userID) => {
       return null; // Return a fallback or error
   }
 };
+
+export const FormatXP = (xp) => {
+  let conversion = Math.floor(xp / 1000)
+  if (conversion > 1000) {
+    return conversion + " mB"
+  } else {
+    return conversion + " kB"
+  }
+}
