@@ -1,5 +1,5 @@
 import SVGProgressBar from "./svg"
-import { FormatXP } from "./helpers"
+import { FilterSkills, FormatXP } from "./helpers"
 
 export const DataBody = (props) => {
   switch (props.dataCode) {
@@ -41,10 +41,16 @@ export const DataBody = (props) => {
         </div>
       )
     case "skills":
+      const { technologies, technicalSkills } = FilterSkills(props.userData);
       return (
         <div className={props.className} >
           <div className="card-body ">
-            {props.userData.user[0].transactions.map((transaction) => (<h5>Skill: {transaction.type.replace("skill_", "")} Amount: {transaction.amount}</h5>))}
+            {Object.entries(technologies).map(([type, amount]) => (
+              <h5 key={type}>{formatSkillName(type)}: {amount}</h5>
+            ))}
+            {Object.entries(technicalSkills).map(([type, amount]) => (
+              <h5 key={type}>{formatSkillName(type)}: {amount}</h5>
+            ))}
           </div>
         </div>
       )
