@@ -26,7 +26,7 @@ export const FormatXP = (xp) => {
   }
 };
 
-const formatSkillName = (skill) => {
+export const FormatSkillName = (skill) => {
   return skill
     .replace("skill_", "")
     .replace(/-/g, " ")
@@ -40,17 +40,19 @@ export const FilterSkills = (data) => {
   const technologies = {};
 
   skills.forEach((skill) => {
-    const skillType = skill.type;
+    const skillType = FormatSkillName(skill.type);
+    console.log("FilterSkills: ", skillType)
     const skillAmount = skill.amount;
 
     if (
       [
-        "skill_go",
-        "skill_js",
-        "skill_html",
-        "skill_css",
-        "skill_unix",
-        "skill_docker",
+        "Go",
+        "Js",
+        "Html",
+        "Css",
+        "Unix",
+        "Docker",
+        "Sql",
       ].includes(skillType)
     ) {
       if (!technologies[skillType]) {
@@ -60,10 +62,15 @@ export const FilterSkills = (data) => {
       }
     } else if (
       [
-        "skill_prog",
-        "skill_algo",
-        "skill_front-end",
-        "skill_back-end",
+        "Prog",
+        "Algo",
+        "Front-end",
+        "Back-end",
+        "Sys-admin",
+        "Tcp",
+        "Game",
+        "Stats",
+        "Ai",
       ].includes(skillType)
     ) {
       if (!technicalSkills[skillType]) {

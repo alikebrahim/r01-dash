@@ -1,5 +1,6 @@
 import SVGProgressBar from "./svg"
-import { FilterSkills, FormatXP } from "./helpers"
+import { FilterSkills, FormatXP, FormatSkillName } from "./helpers"
+import CreateRadarChart from "./chart"
 
 export const DataBody = (props) => {
   switch (props.dataCode) {
@@ -45,12 +46,8 @@ export const DataBody = (props) => {
       return (
         <div className={props.className} >
           <div className="card-body ">
-            {Object.entries(technologies).map(([type, amount]) => (
-              <h5 key={type}>{formatSkillName(type)}: {amount}</h5>
-            ))}
-            {Object.entries(technicalSkills).map(([type, amount]) => (
-              <h5 key={type}>{formatSkillName(type)}: {amount}</h5>
-            ))}
+            {CreateRadarChart(technologies, "Technologies")}
+            {CreateRadarChart(technicalSkills, "Technical Skills")}
           </div>
         </div>
       )
