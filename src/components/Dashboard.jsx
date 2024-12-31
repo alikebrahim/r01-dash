@@ -53,7 +53,7 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar />
-      {userID ? <h2>Welcome to your dashboard, {userData.firstName} {userData.lastName}!</h2> : <p>Loading...</p>}
+      {userID ? <h2 style={{ paddingTop: '56px' }}>Welcome to your dashboard, {userData.firstName} {userData.lastName}!</h2> : <p>Loading...</p>}
       <div>
         <div className="row">
           <UserDataCard className="card bg-dark-subtle border-bottom col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="dashboard" userID={userID}></UserDataCard>

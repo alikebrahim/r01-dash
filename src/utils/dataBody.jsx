@@ -5,7 +5,6 @@ import CreateRadarChart from "./chart"
 export const DataBody = (props) => {
   switch (props.dataCode) {
     case "dashboard":
-      // console.log("DataBody (" + props.dataCode + ") - Email: ", props.userData.user[0].email)
       return (
         <div className={props.className} >
           <div className="card-body">
@@ -22,7 +21,7 @@ export const DataBody = (props) => {
         <div className={props.className} >
           <div className="card-body">
             <h5 className="card-title">Audit data</h5>
-            <p className="card-text">Audit Ratio: {Math.ceil(props.userData.user[0].auditRatio)}</p>
+            <p className="card-text">Audit Ratio: {props.userData.user[0].auditRatio.toFixed(1)}</p>
             <div>
               {SVGProgressBar(props.userData.user[0].totalUp
                 , props.userData.user[0].totalDown

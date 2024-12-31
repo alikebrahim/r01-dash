@@ -17,6 +17,14 @@ const SVGProgressBar = (totalGiven, totalReceived) => {
     const length = number.toString().length;
     return length > 6 ? height / 3 : height / 2.5; // Example adjustment for longer numbers
   };
+  const formatValue = (value) => {
+    let val = value / 1000000
+    if (val < 1) {
+      return val.toFixed(2) + " KB"
+    } else {
+      return val.toFixed(2) + " MB"
+    }
+  }
 
   return (
     <svg width={width} height={height * 2 + 10}>
@@ -38,7 +46,7 @@ const SVGProgressBar = (totalGiven, totalReceived) => {
           dominantBaseline="middle"
           fontSize={calculateFontSize(totalGiven)}
         >
-          {`Given: ${totalGiven}`}
+          {`Given: ${formatValue(totalGiven)}`}
         </text>
       </g>
       <g transform={`translate(0,${height + 10})`}>
@@ -59,7 +67,7 @@ const SVGProgressBar = (totalGiven, totalReceived) => {
           dominantBaseline="middle"
           fontSize={calculateFontSize(totalReceived)}
         >
-          {`Received: ${totalReceived}`}
+          {`Received: ${formatValue(totalReceived)}`}
         </text>
       </g>
     </svg>
