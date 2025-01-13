@@ -10,6 +10,13 @@ const Dashboard = () => {
   const [userData, setUserData] = useState(null);
 
   const logout = () => {
+    axios.post('https://learn.reboot01.com/api/graphql-engine/v1/graphql',
+      {
+        headers: {
+          'X-jwt-Token': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
     localStorage.removeItem('token');
     navigate('/login');
   };
@@ -56,11 +63,9 @@ const Dashboard = () => {
       {userID ? <h2 style={{ paddingTop: '56px' }}>Welcome to your dashboard, {userData.firstName} {userData.lastName}!</h2> : <p>Loading...</p>}
       <div>
         <div className="row">
-          <UserDataCard className="card bg-dark-subtle border-bottom col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="dashboard" userID={userID}></UserDataCard>
-          <UserDataCard className="card bg-dark-subtle col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="xp" userID={userID}></UserDataCard>
-        </div>
-        <div className="row">
-          <UserDataCard className="card bg-dark-subtle border-bottom col-md-6 mb-4" token={localStorage.getItem('token')} dataCode="audit" userID={userID}></UserDataCard>
+          <UserDataCard className="card bg-dark-subtle border-bottom col-md-4 mb-4" token={localStorage.getItem('token')} dataCode="dashboard" userID={userID}></UserDataCard>
+          <UserDataCard className="card bg-dark-subtle col-md-4 mb-4" token={localStorage.getItem('token')} dataCode="xp" userID={userID}></UserDataCard>
+          <UserDataCard className="card bg-dark-subtle border-bottom col-md-4 mb-4" token={localStorage.getItem('token')} dataCode="audit" userID={userID}></UserDataCard>
         </div>
       </div>
       <div className="row">
