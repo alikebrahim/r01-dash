@@ -72,6 +72,9 @@ const Dashboard = () => {
         <UserDataCard className="card bg-dark-subtle col-md-12 mb-4" token={localStorage.getItem('token')} dataCode="lastProjects" userID={userID}></UserDataCard>
       </div>
       <div className="row">
+        <UserDataCard className="card bg-dark-subtle col-md-12 mb-4" token={localStorage.getItem('token')} dataCode="auditPassFail" userID={userID}></UserDataCard>
+      </div>
+      <div className="row">
         <UserDataCard className="card bg-dark-subtle col-md-12 mb-4" token={localStorage.getItem('token')} dataCode="skills" userID={userID}></UserDataCard>
       </div>
     </div>

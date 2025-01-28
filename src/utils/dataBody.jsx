@@ -1,8 +1,9 @@
 import SVGProgressBar from "./svg"
-import { FilterSkills, FormatXP, FormatSkillName } from "./helpers"
-import CreateRadarChart from "./chart"
+import { FilterSkills, FormatXP } from "./helpers"
+import { CreatePieChart, CreateRadarChart } from "./chart"
 
 export const DataBody = (props) => {
+
   switch (props.dataCode) {
     case "dashboard":
       return (
@@ -57,6 +58,16 @@ export const DataBody = (props) => {
           <div className="card-body">
             <ul className="list-group"></ul>
             {props.userData.transaction.map((transaction) => (<li className="list-group-item text-start"> Project : {transaction.object.name}</li>))}
+          </div>
+        </div>
+      )
+    case "auditPassFail":
+      console.log(`Props for ${props.dataCode}\n`, props.userData.user[0])
+      return (
+        <div className={props.className} >
+          <p>Audit Pass/ Fail Ratio</p>
+          <div className="card-body">
+            {CreatePieChart(props.userData.user[0])}
           </div>
         </div>
       )

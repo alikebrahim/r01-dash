@@ -32,7 +32,6 @@ const UserDataCard = ({ className, token, dataCode, userID }) => {
 
     APICALL();
   }, [token, dataCode, userID]);
-  // console.log("(" + dataCode + ")", userData)
 
   return (
     <>

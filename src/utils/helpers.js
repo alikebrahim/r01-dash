@@ -11,6 +11,8 @@ export const DecodeQuery = (dataCode, userID) => {
       return Queries.skillsQuery;
     case "lastProjects":
       return Queries.lastProjectsQuery;
+    case "auditPassFail":
+      return Queries.auditPassFail;
     default:
       console.warn(`No query found for: ${dataCode}`);
       return null; // Return a fallback or error
@@ -44,15 +46,7 @@ export const FilterSkills = (data) => {
     const skillAmount = skill.amount;
 
     if (
-      [
-        "Go",
-        "Js",
-        "Html",
-        "Css",
-        "Unix",
-        "Docker",
-        "Sql",
-      ].includes(skillType)
+      ["Go", "Js", "Html", "Css", "Unix", "Docker", "Sql"].includes(skillType)
     ) {
       if (!technologies[skillType]) {
         technologies[skillType] = skillAmount;
@@ -80,9 +74,7 @@ export const FilterSkills = (data) => {
     }
   });
 
-
   // console.log("Technical Skills:", technicalSkills);
   // console.log("Technologies:", technologies);
   return { technologies, technicalSkills };
 };
-

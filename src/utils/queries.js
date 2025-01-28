@@ -1,13 +1,4 @@
 export const Queries = {
-  // User ID
-  userID: `
-    {
-      user {
-        id
-      }
-    }
-  `,
-
   // User Details
   userDetails: `
     {
@@ -19,21 +10,6 @@ export const Queries = {
         firstName
         lastName
       }
-      progress(
-        where: { isDone: { _eq: false }, object: { type: { _eq: "project" } } }
-        limit: 1
-      ) {
-        object {
-          name
-        }
-      }
-    }
-  `,
-
-  // User Current Project
-  // not working?
-  UserCurrentProject: `
-    {
       progress(
         where: { isDone: { _eq: false }, object: { type: { _eq: "project" } } }
         limit: 1
@@ -112,4 +88,19 @@ export const Queries = {
       }
     }
   `,
+
+  auditPassFail: `query Result {
+  user {
+    auditPass: audits_aggregate(where: {grade: {_gte: "1"}}) {
+      aggregate {
+        count
+      }
+    }
+    auditFail: audits_aggregate(where: {grade: {_lt: "1"}}) {
+      aggregate {
+        count
+      }
+    }
+  }
+}`,
 };
