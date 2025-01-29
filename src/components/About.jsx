@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import Navbar from './Navbar';
 
 const About = () => {
-  const [markdown, setMarkdown] = useState('');
+  const readmeContent = `
+# Reboot01 Learner Dashboard
 
-  useEffect(() => {
-    console.log("Fetching Markdown...");
-    fetch('/README.md')
-      .then((response) => response.text())
-      .then((text) => {
-        setMarkdown(text);
-      })
-      .catch((error) => {
-        console.error('Error fetching Markdown:', error);
-        setMarkdown('# Error\nFailed to load the content.');
-      });
-  }, []);
+This project served an introduction to Front-end Frameworks. I've chosen React to introduce myself to the basic concepts within the JS dev eco-system.
+
+This project has helped me learn:
+
+**Basic concepts such as:**
+- Component design
+- State Management
+- CSS libraries (bootstrapCSS)
+`;
 
   return (
     <>
@@ -24,7 +22,7 @@ const About = () => {
         <Navbar />
       </div>
       <div style={{ textAlign: 'left', margin: '20px' }}>
-        <ReactMarkdown>{markdown}</ReactMarkdown>
+        <ReactMarkdown>{markdownContent}</ReactMarkdown>
       </div>
     </>
   );
