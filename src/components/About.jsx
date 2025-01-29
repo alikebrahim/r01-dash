@@ -6,14 +6,15 @@ const About = () => {
   const [markdown, setMarkdown] = useState('');
 
   useEffect(() => {
-    // Fetch the Markdown file from the public folder or another location
-    fetch('/README.md') // Adjust the path to your Markdown file
+    console.log("Fetching Markdown...");
+    fetch('/README.md')
       .then((response) => response.text())
       .then((text) => {
         setMarkdown(text);
       })
       .catch((error) => {
         console.error('Error fetching Markdown:', error);
+        setMarkdown('# Error\nFailed to load the content.');
       });
   }, []);
 
