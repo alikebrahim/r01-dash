@@ -16,9 +16,6 @@ const Navbar = () => {
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/dashboard">Home</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/about">About</a>
-            </li>
           </ul>
           {/* New ul for right alignment */}
           <ul className="navbar-nav ms-auto">
